@@ -35,4 +35,11 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    static: "./dist",
+    open: true,
+    hot: true,
+    liveReload: true,
+    watchFiles: ["src/**/*.{html,js,css}"],
+  }
 };
