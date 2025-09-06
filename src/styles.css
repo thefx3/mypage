@@ -13,3 +13,141 @@
   font-family: var(--font-family);
 }
 
+html {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+#header {
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  & .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-flow: row wrap;
+    gap: 5px;
+  }
+
+  & .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-flow: row wrap;
+    & button {
+      appearance: none;
+      background-color: transparent;
+      color: var(--secondary-color);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--secondary-color) 50%;
+      }
+    }
+  }
+
+  & .social-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+    flex-flow: row wrap;
+
+    & a img {
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+  }
+}
+
+a img {
+  aspect-ratio: 1 / 1;
+  width: 40px;
+}
+
+/* #header:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+
+.main_logo {
+  aspect-ratio: auto;
+  width: 100px;
+}
+
+
+
+main {
+  min-width: 300px;
+  min-height: 70vh;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 20px;
+  gap: 50px;
+
+  .content-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  & h1 {
+    font-size: 2.5rem;
+    font-family: var(--font-family-alt);
+  }
+
+  & p {
+    font-size: 1.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .btn-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  & button {
+    appearance: none;
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: var(--secondary-color) 1px solid;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      background-color: var(--secondary-color);
+      color: var(--primary-color);
+      transform: scale(1.05);
+    }
+  }
+}
+
+.main_logo {
+  aspect-ratio: auto;
+  width: 300px;
+}
