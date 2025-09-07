@@ -61,12 +61,17 @@ html {
       border: none;
       color: var(--secondary-color);
       padding: 10px 20px;
-      border-radius: 10px;
+      border-radius: 99px;
       cursor: pointer;
       font-size: 16px;
       font-weight: 500;
 
-      transition: color 0.15s ease-in;
+      transition: background-color 0.25s ease-in;
+
+      &:hover {
+        background-color: #0000001e;
+      }
+      
     }
   }
 
@@ -79,7 +84,7 @@ input[type="radio"] { display: none;}
   z-index: 1;
   background: var(--secondary-color);
   border-radius: 99px;
-  transition: transform .25s ease-out;
+  transition: transform 0.25s ease-out;
 
   left: 0px;
   height: calc(100% - 10px);
@@ -118,13 +123,22 @@ a img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 } */
 
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  gap: 80px;
+}
 
 .main_logo {
   aspect-ratio: auto;
   width: 100px;
 }
 
-main {
+.main-1 {
   min-width: 300px;
   /* min-height: 70vh; */
   display: flex;
@@ -133,7 +147,7 @@ main {
   justify-content: center;
   color: var(--secondary-color);
   text-align: center;
-  padding: 20px;
+  padding: 10px 20px;
   gap: 50px;
 
   .content-left {
@@ -187,3 +201,59 @@ main {
   width: 300px;
 }
 
+.separator {
+
+  position: absolute;
+  min-width: 500px;
+  max-width: max-content;
+  /* min-height: 70vh; */
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  border: var(--secondary-color) 1px solid;
+  background-color: var(--primary-color);
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px 40px;
+  gap: 50px;
+  /* margin: -50px 0 50px 0; */
+
+  bottom: 100%;
+  transform: translateY(50%);
+  
+
+
+  z-index: 5;
+}
+
+.main-2 {
+  position:relative;
+  width : 100%;
+  min-width: 300px;
+  /* min-height: 70vh; */
+
+  background-color: var(--secondary-color);
+  border: solid 1px var(--secondary-color);
+  color: var(--primary-color);
+
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+
+  & #mywork {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+
+    min-height: 70vh;
+    width: 100%;
+
+  }
+
+}
