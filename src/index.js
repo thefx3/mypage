@@ -8,6 +8,7 @@ import sex from "./images/18.png";
 import proposal from "./images/proposal.png";
 import cuddling from "./images/cuddling.png";
 import waiting from "./images/waiting.png";
+import question from "./images/question.png";
 
 const tabs = document.querySelectorAll(".tab");
 const selector = document.querySelector(".selector");
@@ -60,7 +61,7 @@ class CardItem {
         <img src="${this.imgSrc}" alt="${this.title}">
         <h3>${this.title}</h3>
       </div>
-      <h4>Spots left : <span class="qty">${this.qty}</span></h4>
+      <h4 class="spots">Spots left : <span class="qty">${this.qty}</span></h4>
     `;
 
     return cardWrapper;
@@ -80,6 +81,7 @@ function loadCards() {
     new CardItem("Cuddling", cuddling, 13, "cuddling"),
     new CardItem("Making Love", love, 5, "makinglove"),
     new CardItem("Proposal", proposal, 5, "proposal"),
+    new CardItem("I choose", question, "?", "mychoice"),
     
   ];
 

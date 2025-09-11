@@ -131,15 +131,12 @@ a img {
 }
 
 .main-1 {
-  min-width: 300px;
-  /* min-height: 70vh; */
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   color: var(--secondary-color);
   text-align: center;
-  padding: 0;
   gap: 90px;
 
   .content-left {
@@ -201,11 +198,9 @@ a img {
 }
 
 .separator {
-/* 
-  position: absolute; */
   min-width: 500px;
-  max-width: fit-content;
-  /* min-height: 70vh; */
+  max-width: 1000px;
+
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -213,15 +208,12 @@ a img {
   color: var(--secondary-color);
   border: 1px solid rgba(155, 136, 230, 0.2) 0.2;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 10px;
 
-  margin: 30px 0;
+  margin: 50px 0;
 
-  /*Position between main-1 and main-2*/
-  /* bottom: 100%;
-  transform: translateY(110%);  */
+  background: linear-gradient(135deg, #c1c0c494, #9383d373);
 
-  background: rgba(169, 146, 231, 0.2); /* transparent blanc */
   backdrop-filter: blur(5px);          /* flou de ce qu’il y a derrière */
   -webkit-backdrop-filter: blur(5px);
   box-shadow: #0000001a 0px 4px 30px; /* ombre portée */
@@ -252,28 +244,62 @@ a img {
 
 
 /* PROJECTS */
+.container-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-.section-title {
-  font-size: 2rem;
+  .subtitle {
+    font-size: 24px;
+    font-weight: bold;
+  
+    background: linear-gradient(to right, #c5c4c9, #ac9de9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    /* Pour compatibilité Firefox */
+    background-clip: text;
+    color: transparent;
+  }
 }
-.main-2 {
-  /* position:relative; */
-  width : 100%;
-  min-width: 300px;
-  /* min-height: 70vh; */
+.section-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem; /* espace entre les éléments */
+  text-align: center;
+  margin-bottom: 20px;
 
+  & .title {
+    font-weight: extra-bold;
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+
+  & hr {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right,transparent, rgb(180, 156, 156), rgb(0, 0, 0));
+    border: none;
+  }
+}
+
+
+.main-2 {
+  width : 100%;
   background-color: var(--secondary-color);
   border: solid 1px var(--secondary-color);
   color: var(--primary-color);
-
   justify-items: center;
   align-items: center;
   text-align: center;
-
   padding: 50px 0;
 }
 
-#mywork {
+.mywork {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -281,54 +307,72 @@ a img {
   gap: 50px;
 }
 
+.spots {
+  display: none;
+}
+
 .grid {
   display: grid;
   flex-flow: row wrap;
-  grid-template-columns: repeat(4, minmax(150px, 1fr));
-  gap: 60px;
-  justify-items: center;
-  align-items: start;
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
+  gap: 50px;
+  justify-items: stretch;
+  align-items: stretch;
   text-align: center;
-
-  max-height: 1000px;
-  max-width: 800px;
+  padding: 20px;
+  border-radius: 10px;
   min-width: 300px;
+  max-width: 1200px;
 
   & .cards {
-    display: flex; 
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    height: 100%;
+    color: var(--secondary-color);
+    
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 
   & .card {
     display : flex;
-    flex-flow: row wrap;
-    width: 100%;
+    flex-flow: column;
     padding: 20px;
     gap: 10px;
-    aspect-ratio: auto;
-    background-color: var(--primary-color);
+    background: rgb(245, 245, 245, 0.8);
+
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--secondary-color);
 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px);
+      background: linear-gradient(135deg, #c1c0c4d2, #9383d3cb);
+      transform: scale(0.95);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
     & img {
       aspect-ratio: 1 / 1;
-      width: 80px;
-      height: auto;
+      width: 50px;
       display: block;
+
     }
   }
+}
+    
+.cards img {
+  transition: filter 0.3s ease;
+}
+
+.cards:hover img {
+  filter: invert(1);
+}
+.container {
+  min-width: 300px;
+  max-width: 1200px;
 }
