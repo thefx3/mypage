@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Cooking", img: cooking },
     { title: "Netflix & Chill", img: netflix },
     { title: "Cuddling", img: cuddling },
-    { title: "Love", img: love },
+    { title: "Making Love", img: love },
     { title: "Having Sex", img: sex },
     { title: "Proposal", img: proposal },
     { title: "Restaurant", img: restaurant },
