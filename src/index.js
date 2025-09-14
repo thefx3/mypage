@@ -40,7 +40,6 @@ window.addEventListener("resize", () => {
 
 
 
-
 // Classe pour créer une carte
 class CardItem {
   constructor(title, imgSrc, qty, dataItem) {
@@ -63,33 +62,142 @@ class CardItem {
       </div>
       <h4 class="spots">Spots left : <span class="qty">${this.qty}</span></h4>
     `;
-
     return cardWrapper;
   }
+
 }
+
+const cards = [
+  new CardItem("Hiking", hiking, 20, "hiking"),
+  new CardItem("Cooking", cooking, 13, "cooking"),
+  new CardItem("Restaurant", restaurant, 50, "restaurant"),
+  new CardItem("Netflix & Chill", netflix, 9, "netflix"),
+  new CardItem("Having Sex", sex, 99, "sex"),
+  new CardItem("Cuddling", cuddling, 13, "cuddling"),
+  new CardItem("Making Love", love, 5, "makinglove"),
+  new CardItem("Proposal", proposal, 5, "proposal"),
+  new CardItem("I choose", question, "?", "mychoice"),
+];
 
 // Fonction pour injecter les cartes dans .grid
 function loadCards() {
   const grid = document.querySelector(".grid");
 
-  const cards = [
-    new CardItem("Hiking", hiking, 20, "hiking"),
-    new CardItem("Cooking", cooking, 13, "cooking"),
-    new CardItem("Restaurant", restaurant, 50, "restaurant"),
-    new CardItem("Netflix & Chill", netflix, 9, "netflix"),
-    new CardItem("Having Sex", sex, 99, "sex"),
-    new CardItem("Cuddling", cuddling, 13, "cuddling"),
-    new CardItem("Making Love", love, 5, "makinglove"),
-    new CardItem("Proposal", proposal, 5, "proposal"),
-    new CardItem("I choose", question, "?", "mychoice"),
-    
-  ];
-
   cards.forEach(card => {
     grid.appendChild(card.render());
   });
-
 }
 
-// Charger les cartes après le chargement du DOM
 document.addEventListener("DOMContentLoaded", loadCards);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cardContainer = document.querySelector(".card-container");
+  let cards = document.querySelectorAll(".card-inner");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  const cardWidth = 270; // largeur + marge (250px + 20px gap)
+  let currentIndex = 1; // on commence sur la vraie première carte
+
+  // Stockage des états (flip + contenu tiré)
+  const cardStates = new Map();
+
+  // Exemple de contenu possible au dos
+  const backOptions = [
+    { title: "Hiking", img: hiking },
+    { title: "Cooking", img: cooking },
+    { title: "Netflix & Chill", img: netflix },
+    { title: "Cuddling", img: cuddling },
+    { title: "Love", img: love },
+    { title: "Having Sex", img: sex },
+    { title: "Proposal", img: proposal },
+    { title: "Restaurant", img: restaurant },
+    { title: "Your Choice!", img: question },
+    { title: "Surprise!", img: waiting },
+  ];
+
+  // Clones pour l’infini
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone = cards[cards.length - 1].cloneNode(true);
+  cardContainer.appendChild(firstClone);
+  cardContainer.insertBefore(lastClone, cards[0]);
+  cards = document.querySelectorAll(".card-inner");
+
+  function updateCarousel(animate = true) {
+    if (!animate) {
+      cardContainer.style.transition = "none";
+    } else {
+      cardContainer.style.transition = "transform 0.5s ease";
+    }
+    const offset = -currentIndex * cardWidth;
+    cardContainer.style.transform = `translateX(${offset}px)`;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex >= cards.length - 1) return;
+    resetCardState(cards[currentIndex]); // reset avant de changer
+    currentIndex++;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex <= 0) return;
+    resetCardState(cards[currentIndex]);
+    currentIndex--;
+    updateCarousel();
+  });
+
+  cardContainer.addEventListener("transitionend", () => {
+    if (cards[currentIndex].isSameNode(firstClone)) {
+      resetCardState(cards[currentIndex]);
+      currentIndex = 1;
+      updateCarousel(false);
+    }
+    if (cards[currentIndex].isSameNode(lastClone)) {
+      resetCardState(cards[currentIndex]);
+      currentIndex = cards.length - 2;
+      updateCarousel(false);
+    }
+  });
+
+  // 🎴 Flip logique
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      let state = cardStates.get(card);
+
+      // première fois qu’on flip
+      if (!state) {
+        state = { isFlipped: false, content: null };
+        cardStates.set(card, state);
+      }
+
+      if (!state.isFlipped) {
+        // on retourne -> affiche un hasard si pas encore tiré
+        if (!state.content) {
+          state.content = backOptions[Math.floor(Math.random() * backOptions.length)];
+          const back = card.querySelector(".card-back");
+          back.innerHTML = `
+            <img src="${state.content.img}" alt="${state.content.title}">
+            <h3>${state.content.title}</h3>
+          `;
+        }
+        card.style.transform = "rotateY(180deg)";
+        state.isFlipped = true;
+      } else {
+        // on retourne face avant
+        card.style.transform = "rotateY(0deg)";
+        state.isFlipped = false;
+      }
+    });
+  });
+
+  // Réinitialisation d’une carte (nouveau tirage quand on revient plus tard)
+  function resetCardState(card) {
+    card.style.transform = "rotateY(0deg)";
+    cardStates.set(card, { isFlipped: false, content: null });
+  }
+
+  updateCarousel(false); // init
+});
+
+
