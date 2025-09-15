@@ -393,8 +393,9 @@ a img {
 }
 
 .card-inner {
-  width: 250px;
-  height: 350px;
+  margin: 5px;
+  width: 240px;
+  height: 340px;
   transition: transform 0.8s;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -404,7 +405,6 @@ a img {
 
 .card-inner.flipped {
   transform: rotateY(180deg);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4), 0 0 20px rgba(255, 215, 0, 0.6); 
 }
 
 .card-front, .card-back {

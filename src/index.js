@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Having Sex", img: sex },
     { title: "Proposal", img: proposal },
     { title: "Restaurant", img: restaurant },
-    { title: "Your Choice!", img: question },
     { title: "Surprise!", img: waiting },
   ];
 
@@ -182,10 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         }
         card.style.transform = "rotateY(180deg)";
+        card.classList.add("flipped");
         state.isFlipped = true;
       } else {
         // on retourne face avant
         card.style.transform = "rotateY(0deg)";
+        card.classList.remove("flipped");
         state.isFlipped = false;
       }
     });
